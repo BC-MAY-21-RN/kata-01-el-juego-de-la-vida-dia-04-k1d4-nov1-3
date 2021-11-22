@@ -1,29 +1,23 @@
 ![BrightCoders Logo](img/logo-bc.png)
 
 # Kata El Juego de la Vida
-### Iteración 03: Desarrollo basado en pruebas (TDD)
+### Iteración 2 Orientación a objetos
 ![cover](img/cover.jpg)
-<span>Photo by <a href="https://unsplash.com/@anubhav?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Anubhav Saxena</a> on <a href="https://unsplash.com/s/photos/life?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
+<span>Photo by <a href="https://unsplash.com/@seantookthese?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Sean O.</a> on <a href="https://unsplash.com/s/photos/life?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
 
 ## Pre-requisitos
 - [Instalar y utilizar ESLint para mantener tu codigo consistente e identificar posibles problemas](https://eslint.org/)
 
 ## Nuevo requerimiento
-En esta ocasión además de ser orientada a objetos tu implementación debe incluir pruebas unitarias. El objetivo sigue siendo lograr el mayor avance posible. 
+En esta ocasión  tu implementación deberá estar completamente orientada a objetos:
+- _ABSTRACCIÓN_. Probablemente el día de ayer trabajaste tu solución utilizando directamente un vector o matríz. Ahora deberás poner más atención en estructurar tu solución en abstracciones, es decir clases. Tu solución debe aplicar de manera correcta los principios de la programación orientada a objetos. 
 
-Los siguientes enlaces te sirven para documentarte en la forma en la que el desarrollo basado en pruebas se realiza con Javascript. Existen varias herramientas para realizar pruebas y eres libre de elegir la que prefieras, aunque aquí nos estaremos enfocando en [Jest](https://jestjs.io/).
+Los siguientes enlaces te pueden dar algunas pistas de como cumplir con estos requerimientos:
+- [An intro to object-oriented programming in JavaScript: objects, prototypes, and classes](https://www.freecodecamp.org/news/an-intro-to-object-oriented-programming-in-javascript-objects-prototypes-and-classes-5d135e7361b1/)
+- [JavaScript — Principios SOLID](https://medium.com/@mauriciogc/javascript-principios-solid-e93a17e950bb)
+- [Understanding SOLID Principles in JavaScript](https://hackernoon.com/understanding-solid-principles-in-javascript-w1cx3yrv)
 
-Si no estás muy familiarizado comn TDD te recomiero primero dedicar un tiempo para familiarizarte con este tema:
-- [The Absolute Beginner’s Guide to Test Driven Development, with a Practical Example](https://medium.com/@bethqiang/the-absolute-beginners-guide-to-test-driven-development-with-a-practical-example-c39e73a11631) 
-- [Learn Test Driven Development (TDD)](https://github.com/dwyl/learn-tdd)
-- [Fundamentals of TDD](https://thoughtbot.com/upcase/fundamentals-of-tdd)
-
-Los siguientes recursos pueden ayudarte para iniciarte a trabajar con Jest:
-
-- [Getting Started](https://jestjs.io/docs/en/getting-started)
-- [Getting Started With Jest](https://www.valentinog.com/blog/jest/) 
-- [Testing JavaScript with Jest](https://flaviocopes.com/jest/)
-
+**NOTA:** En esta segunda iteración, debes iniciar tu implementación desde cero, elimina o no utilices el código de la edición anterior. el objetivo no es terminar la implementación del algorimo sino practicar y experimentar.
 
 ## Requerimientos Funcionales
 Addapted from [Coding Dojo](https://codingdojo.org)
@@ -65,19 +59,16 @@ Generation 2:
 ## Requerimientos no funcionales
 - Calidad
   - Utilizar estilo de código definido por la comunidad (apoyarse en ESLint)
-  - Mostrar la salida en consola
-  - Incluir pruebas unitarias
 - Desempeño y escalabilidad
   - Puede ejecutarse desde la linea de comandos y mostrar la salida en consola
 - Código fuente
   - Orientado a Objetos
   - Métodos Pequeños
-  -  Aplicar los principios SOLID
- 
+ - Aplicar los principios SOLID
+
 ## Tecnologías
 - Lenguaje de programación Javascript
 - ESLINT
-- JEST
 - Línea de comando / consola
 
 ## Entregable
@@ -94,10 +85,4 @@ Generation 2:
 - [An intro to object-oriented programming in JavaScript: objects, prototypes, and classes](https://www.freecodecamp.org/news/an-intro-to-object-oriented-programming-in-javascript-objects-prototypes-and-classes-5d135e7361b1/)
 - [JavaScript — Principios SOLID](https://medium.com/@mauriciogc/javascript-principios-solid-e93a17e950bb)
 - [Understanding SOLID Principles in JavaScript](https://hackernoon.com/understanding-solid-principles-in-javascript-w1cx3yrv)
-- [The Absolute Beginner’s Guide to Test Driven Development, with a Practical Example](https://medium.com/@bethqiang/the-absolute-beginners-guide-to-test-driven-development-with-a-practical-example-c39e73a11631) 
-- [Learn Test Driven Development (TDD)](https://github.com/dwyl/learn-tdd)
-- [Fundamentals of TDD](https://thoughtbot.com/upcase/fundamentals-of-tdd)
-- [Getting Started](https://jestjs.io/docs/en/getting-started)
-- [Getting Started With Jest](https://www.valentinog.com/blog/jest/) 
-- [Testing JavaScript with Jest](https://flaviocopes.com/jest/)
 
