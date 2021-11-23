@@ -28,17 +28,16 @@ module.exports = class Cell {
   }
 
   newGeneration(NumLifeCells, celula) {
-
-    if(celula == "O" && NumLifeCells < 2 ){
-      return DEAD
-    }else if(celula == "O" && NumLifeCells > 3){
-      return DEAD
-    }else if(celula == "O" && (NumLifeCells == 2 || NumLifeCells == 3)){
-      return ALIVE
-    }else if(celula == "." && NumLifeCells == 3){
-      return ALIVE
-    }else if(celula == "." && NumLifeCells != 3){
-      return DEAD
+    if (celula == "O" && NumLifeCells < 2) {
+      return DEAD;
+    } else if (celula == "O" && NumLifeCells > 3) {
+      return DEAD;
+    } else if (celula == "O" && (NumLifeCells == 2 || NumLifeCells == 3)) {
+      return ALIVE;
+    } else if (celula == "." && NumLifeCells == 3) {
+      return ALIVE;
+    } else if (celula == "." && NumLifeCells != 3) {
+      return DEAD;
     }
   }
 };

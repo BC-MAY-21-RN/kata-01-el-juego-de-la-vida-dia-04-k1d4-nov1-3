@@ -2,10 +2,10 @@
 const Cell = require("./Cell");
 
 module.exports = class Grid {
-  constructor(rows, columns) {
+  constructor(rows, columns, grid = []) {
     this.rows = rows;
     this.columns = columns;
-    this.grid = [];
+    this.grid = grid;
     this.celula = new Cell();
     this.vivas = 0;
   }
@@ -17,6 +17,10 @@ module.exports = class Grid {
         this.grid[fila][col] = this.celula.createCells();
       }
     }
+  }
+
+  printArray() {
+    console.log(this.grid);
   }
 
   newGrid() {

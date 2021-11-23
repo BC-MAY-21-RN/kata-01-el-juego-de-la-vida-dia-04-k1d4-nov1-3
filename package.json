@@ -4,7 +4,7 @@
   "description": "![BrightCoders Logo](img/logo-bc.png)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "sh node_modules/.bin/jest"
   },
   "repository": {
     "type": "git",
@@ -18,7 +18,10 @@
   },
   "homepage": "https://github.com/BC-MAY-21-RN/kata-01-el-juego-de-la-vida-dia-02-k1d2-nov1-3#readme",
   "devDependencies": {
-    "eslint": "^8.2.0",
+    "eslint": "^8.3.0",
     "jest": "^27.3.1"
+  },
+  "dependencies": {
+    "eslint-plugin-jest": "^25.2.4"
   }
 }
