@@ -19,21 +19,21 @@ module.exports = class Grid {
     }
   }
 
-  printArray() {
-    console.log(this.grid);
+  corner(fila, col, left = 1, right = 1) {
+    this.grid[fila][col + right] == "." ? null : this.vivas++;
+    this.grid[fila + left][col + right] == "." ? null : this.vivas++;
+    this.grid[fila + left][col] == "." ? null : this.vivas++;
   }
-
+  
   newGrid() {
     for (let fila = 0; fila < this.rows; fila++) {
       for (let col = 0; col < this.columns; col++) {
 
         if (fila == 0) {
           //Primera fila
+          this.corner(fila, col);
           if (col == 0) {
             //Primera ESQUINA SUPERIOR izquierda LISTO
-            this.grid[fila][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col] == "." ? null : this.vivas++;
           } else if (
             col >= this.columns.length - this.columns.length-1 ||
             col <= this.columns.length - 2
@@ -46,9 +46,7 @@ module.exports = class Grid {
             this.grid[fila + 1][col] == "." ? null : this.vivas++;
           } //ESQUINA SUPERIOR DERECHA LISTO
           else {
-            this.grid[fila][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col] == "." ? null : this.vivas++;
+            this.corner(fila, col, 1, -1);
           }
         } 
         
@@ -91,9 +89,7 @@ module.exports = class Grid {
         else {
           if (col == 0) {
             //Primera ESQUINA INFERIOR IZQUIERDA LISTO
-            this.grid[fila][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila - 1][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila - 1][col] == "." ? null : this.vivas++;
+            this.corner(fila, col, -1);
           } else if (
             col >= this.columns.length - this.columns.length - 1 ||
             col <= this.columns.length - 2
@@ -106,9 +102,7 @@ module.exports = class Grid {
             this.grid[fila - 1][col] == "." ? null : this.vivas++;
           } //ESQUINA INFERIOR DERECHA LISTO
           else {
-            this.grid[fila][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila - 1][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila - 1][col] == "." ? null : this.vivas++;
+            this.corner(fila, col, -1, -1);
           }
         }
         this.grid[fila][col] = this.celula.newGeneration(
