@@ -25,6 +25,10 @@ module.exports = class Grid {
     this.grid[fila + left][col] == "." ? null : this.vivas++;
   }
   
+  decreaseLength(x, col) {
+    return (col >= x - x-1 || col <= x - 2);
+  }
+  
   newGrid() {
     for (let fila = 0; fila < this.rows; fila++) {
       for (let col = 0; col < this.columns; col++) {
@@ -34,10 +38,7 @@ module.exports = class Grid {
           this.corner(fila, col);
           if (col == 0) {
             //Primera ESQUINA SUPERIOR izquierda LISTO
-          } else if (
-            col >= this.columns.length - this.columns.length-1 ||
-            col <= this.columns.length - 2
-          ) {
+          } else if (this.decreaseLength(this.columns.length, col)) {
             //(VERTICALES DEL MEDIO))
             this.grid[fila][col - 1] == "." ? null : this.vivas++;
             this.grid[fila][col + 1] == "." ? null : this.vivas++;
@@ -51,10 +52,7 @@ module.exports = class Grid {
         } 
         
         
-        else if (
-          fila >= this.rows.length - this.rows.length - 1 ||
-          fila <= this.rows.length - 2
-        ) {
+        else if (this.decreaseLength(this.rows.length, fila)) {
           if (col == 0) {
             //Primera columna (VERTICAL 0)
             this.grid[fila - 1][col] == "." ? null : this.vivas++;
@@ -62,10 +60,7 @@ module.exports = class Grid {
             this.grid[fila][col + 1] == "." ? null : this.vivas++;
             this.grid[fila + 1][col + 1] == "." ? null : this.vivas++;
             this.grid[fila + 1][col] == "." ? null : this.vivas++;
-          } else if (
-            col >= this.columns.length - this.columns.length-1 ||
-            col <= this.columns.length - 2
-          ) {
+          } else if (this.decreaseLength(this.columns.length, col)) {
             //(VERTICALES DEL MEDIO))
             this.grid[fila - 1][col] == "." ? null : this.vivas++;
             this.grid[fila - 1][col - 1] == "." ? null : this.vivas++;
@@ -90,10 +85,7 @@ module.exports = class Grid {
           if (col == 0) {
             //Primera ESQUINA INFERIOR IZQUIERDA LISTO
             this.corner(fila, col, -1);
-          } else if (
-            col >= this.columns.length - this.columns.length - 1 ||
-            col <= this.columns.length - 2
-          ) {
+          } else if (this.decreaseLength(this.columns.length, col)) {
             //(VERTICALES DEL MEDIO))
             this.grid[fila][col - 1] == "." ? null : this.vivas++;
             this.grid[fila][col + 1] == "." ? null : this.vivas++;
