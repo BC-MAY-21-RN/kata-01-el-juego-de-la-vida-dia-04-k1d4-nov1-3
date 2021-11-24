@@ -30,56 +30,28 @@ module.exports = class Grid {
   mapita(valores, fila, col) {
     valores.map( (item) => this.killCells(fila, col, item[0], item[1]));
   }
+
+  condiciones(condicion, valores, fila, col) {
+    if (condicion[0]) 
+      this.mapita(valores[0], fila, col);
+    else if (condicion[1])
+      this.mapita(valores[1], fila, col);
+    else
+      this.mapita(valores[2], fila, col);
+  }
   
   newGrid() {
-    let valores = [];
+    // let valores = [];
     for (let fila = 0; fila < this.rows; fila++) {
       for (let col = 0; col < this.columns; col++) {
-        if (fila == 0) {
-          //Primera fila
-          if (col == 0) {
-            //Primera ESQUINA SUPERIOR izquierda LISTO
-          } else if (this.decreaseLength(this.columns.length, col)) {
-            //(VERTICALES DEL MEDIO))
-            valores = [[0, -1], [0, 1], [1, 0], [1, -1], [1, 0]];
-            this.mapita(valores, fila, col);
-          } //ESQUINA SUPERIOR DERECHA LISTO
-          else {
-            valores = [[0, -1], [1, -1], [1, 0]];
-            this.mapita(valores, fila, col);
-          }
-        } 
-        else if (this.decreaseLength(this.rows.length, fila)) {
-          if (col == 0) {
-            //Primera columna (VERTICAL 0)
-            valores = [[-1, 0], [-1, 1], [0, 1], [1, 1], [1,0]];
-            this.mapita(valores, fila, col);
-          } else if (this.decreaseLength(this.columns.length, col)) {
-            //(VERTICALES DEL MEDIO))
-            valores = [[-1, 0], [-1, -1], [-1, 1], [0, -1], [0, 1], [1, -1], [1,0], [1, 1]];
-            this.mapita(valores, fila, col);
-          } //ultima columnna (VERTICAL 7)
-          else {
-            valores = [[-1, 0], [-1, -1], [0, -1], [1, -1], [1, 0]];
-            this.mapita(valores, fila, col);
-          }
-        }
+        if (fila == 0) 
+          this.condiciones([false, this.decreaseLength(this.columns.length, col)], [[], [[0, -1], [0, 1], [1, 0], [1, -1], [1, 0]],[0, -1], [1, -1], [1, 0] ], fila, col);
+        else if (this.decreaseLength(this.rows.length, fila)) 
+          this.condiciones([col == 0, this.decreaseLength(this.columns.length, col)], [[[-1, 0], [-1, 1], [0, 1], [1, 1], [1,0]], [[-1, 0], [-1, -1], [-1, 1], [0, -1], [0, 1], [1, -1], [1,0], [1, 1]], [[-1, 0], [-1, -1], [0, -1], [1, -1], [1, 0]]], fila, col);
         //Ultima fila del array (ESQUINA INFERIOR IZQUIERDA)
-        else {
-          if (col == 0) {
-            //Primera ESQUINA INFERIOR IZQUIERDA LISTO
-            valores = [[0, 1], [-1, 1], [-1, 0]];
-            this.mapita(valores, fila, col);
-          } else if (this.decreaseLength(this.columns.length, col)) {
-            //ESQUINA INFERIOR DERECHA LISTO
-            valores = [[0, -1], [0, 1], [-1, 1], [-1, -1], [-1, 0]];
-            this.mapita(valores, fila, col);           
-          } //ESQUINA INFERIOR DERECHA LISTO
-          else {
-            valores = [[0, -1], [-1, -1], [-1, 0]];
-            this.mapita(valores, fila, col);           
-          }
-        }
+        else 
+          this.condiciones([col == 0, this.decreaseLength(this.columns.length, col)], [[[0, 1], [-1, 1], [-1, 0]], [[0, -1], [0, 1], [-1, 1], [-1, -1], [-1, 0]], [0, -1], [-1, -1], [-1, 0]], fila, col);
+
         this.grid[fila][col] = this.celula.newGeneration(
           this.vivas,
           this.grid[fila][col]

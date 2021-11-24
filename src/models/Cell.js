@@ -31,17 +31,11 @@ module.exports = class Cell {
 
   newGeneration(NumLifeCells, celula) {
     let estado;
-    if (celula == "O" && NumLifeCells < 2) {
-      estado = DEAD;
-    } else if (celula == "O" && NumLifeCells > 3) {
-      estado = DEAD;
-    } else if (celula == "O" && (NumLifeCells == 2 || NumLifeCells == 3)) {
-      estado = ALIVE;
-    } else if (celula == "." && NumLifeCells == 3) {
-      estado = ALIVE;
-    } else if (celula == "." && NumLifeCells != 3) {
-      estado = DEAD;
-    }
+    (celula == "O" && NumLifeCells < 2) ||
+    (celula == "O" && NumLifeCells > 3) ||
+    (celula == "." && NumLifeCells != 3)
+      ? (estado = DEAD)
+      : (estado = ALIVE);
     return estado;
   }
 };
