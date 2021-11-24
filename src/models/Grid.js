@@ -18,17 +18,19 @@ module.exports = class Grid {
       }
     }
   }
-
-  corner(fila, col, left = 1, right = 1) {
-    this.grid[fila][col + right] == "." ? null : this.vivas++;
+  killCells(fila, col, left = 0, right = 0) {
     this.grid[fila + left][col + right] == "." ? null : this.vivas++;
-    this.grid[fila + left][col] == "." ? null : this.vivas++;
+  }
+  corner(fila, col, left = 1, right = 1) {
+    this.killCells(fila, col, 0, right);
+    this.killCells(fila, col, left, right);
+    this.killCells(fila, col, left, 0);
   }
   
   mid(fila, col, value = 1) {
-    this.grid[fila][col - 1] == "." ? null : this.vivas++;
-    this.grid[fila][col + 1] == "." ? null : this.vivas++;
-    this.grid[fila + value][col + 1] == "." ? null : this.vivas++;
+    this.killCells(fila, col, 0, -1);
+    this.killCells(fila, col, 0, 1);
+    this.killCells(fila, col, value, 1);
   }
   
   decreaseLength(x, col) {
@@ -59,28 +61,28 @@ module.exports = class Grid {
         else if (this.decreaseLength(this.rows.length, fila)) {
           if (col == 0) {
             //Primera columna (VERTICAL 0)
-            this.grid[fila - 1][col] == "." ? null : this.vivas++;
-            this.grid[fila - 1][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col] == "." ? null : this.vivas++;
+            this.killCells(fila, col, -1);
+            this.killCells(fila, col, -1, 1);
+            this.killCells(fila, col, 0, 1);
+            this.killCells(fila, col, 1, 1);
+            this.killCells(fila, col, 1);
           } else if (this.decreaseLength(this.columns.length, col)) {
             //(VERTICALES DEL MEDIO))
-            this.grid[fila - 1][col] == "." ? null : this.vivas++;
-            this.grid[fila - 1][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila - 1][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col + 1] == "." ? null : this.vivas++;
+            this.killCells(fila, col, -1);
+            this.killCells(fila, col, -1, -1);
+            this.killCells(fila, col, -1, 1);
+            this.killCells(fila, col, 0, -1);
+            this.killCells(fila, col, 0, 1);
+            this.killCells(fila, col, 1, -1);
+            this.killCells(fila, col, 1);
+            this.killCells(fila, col, 1, 1);
           } //ultima columnna (VERTICAL 7)
           else {
-            this.grid[fila - 1][col] == "." ? null : this.vivas++;
-            this.grid[fila - 1][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col] == "." ? null : this.vivas++;
+            this.killCells(fila, col, -1);
+            this.killCells(fila, col, -1, -1);
+            this.killCells(fila, col, 0, -1);
+            this.killCells(fila, col, 1, -1);
+            this.killCells(fila, col, 1);
           }
         }
 
@@ -92,8 +94,8 @@ module.exports = class Grid {
           } else if (this.decreaseLength(this.columns.length, col)) {
             //(VERTICALES DEL MEDIO))
             this.mid(fila, col, -1);
-            this.grid[fila - 1][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila - 1][col] == "." ? null : this.vivas++;
+            this.killCells(fila, col, -1, -1);
+            this.killCells(fila, col, -1);
           } //ESQUINA INFERIOR DERECHA LISTO
           else {
             this.corner(fila, col, -1, -1);
