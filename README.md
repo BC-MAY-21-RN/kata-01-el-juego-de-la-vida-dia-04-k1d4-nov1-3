@@ -1,3 +1,7 @@
+# Code climate:
+<a href="https://codeclimate.com/github/BC-MAY-21-RN/kata-01-el-juego-de-la-vida-dia-04-k1d4-nov1-3/maintainability"><img src="https://api.codeclimate.com/v1/badges/27b453f5d1396db91039/maintainability" /></a>
+
+
 ![BrightCoders Logo](img/logo-bc.png)
 
 # Kata El Juego de la Vida

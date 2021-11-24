@@ -23,18 +23,6 @@ module.exports = class Grid {
     this.grid[fila + left][col + right] == "." ? null : this.vivas++;
   }
 
-  corner(fila, col, left = 1, right = 1) {
-    this.killCells(fila, col, 0, right); //0, -1
-    this.killCells(fila, col, left, right); //-1,-1
-    this.killCells(fila, col, left, 0); //-1, 0
-  }
-  
-  // mid(fila, col, value = 1) {
-  //   this.killCells(fila, col, 0, -1); //0, -1
-  //   this.killCells(fila, col, 0, 1); //0, 1
-  //   this.killCells(fila, col, value, 1); -1, 1
-  // }
-  
   decreaseLength(x, col) {
     return (col >= x - x-1 || col <= x - 2);
   }
