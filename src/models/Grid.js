@@ -18,87 +18,78 @@ module.exports = class Grid {
       }
     }
   }
+
   killCells(fila, col, left = 0, right = 0) {
     this.grid[fila + left][col + right] == "." ? null : this.vivas++;
   }
+
   corner(fila, col, left = 1, right = 1) {
-    this.killCells(fila, col, 0, right);
-    this.killCells(fila, col, left, right);
-    this.killCells(fila, col, left, 0);
+    this.killCells(fila, col, 0, right); //0, -1
+    this.killCells(fila, col, left, right); //-1,-1
+    this.killCells(fila, col, left, 0); //-1, 0
   }
   
-  mid(fila, col, value = 1) {
-    this.killCells(fila, col, 0, -1);
-    this.killCells(fila, col, 0, 1);
-    this.killCells(fila, col, value, 1);
-  }
+  // mid(fila, col, value = 1) {
+  //   this.killCells(fila, col, 0, -1); //0, -1
+  //   this.killCells(fila, col, 0, 1); //0, 1
+  //   this.killCells(fila, col, value, 1); -1, 1
+  // }
   
   decreaseLength(x, col) {
     return (col >= x - x-1 || col <= x - 2);
   }
   
+  mapita(valores, fila, col) {
+    valores.map( (item) => this.killCells(fila, col, item[0], item[1]));
+  }
+  
   newGrid() {
+    let valores = [];
     for (let fila = 0; fila < this.rows; fila++) {
       for (let col = 0; col < this.columns; col++) {
-
         if (fila == 0) {
           //Primera fila
-          this.corner(fila, col);
           if (col == 0) {
             //Primera ESQUINA SUPERIOR izquierda LISTO
           } else if (this.decreaseLength(this.columns.length, col)) {
             //(VERTICALES DEL MEDIO))
-            this.mid(fila, col);
-            this.grid[fila + 1][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col] == "." ? null : this.vivas++;
+            valores = [[0, -1], [0, 1], [1, 0], [1, -1], [1, 0]];
+            this.mapita(valores, fila, col);
           } //ESQUINA SUPERIOR DERECHA LISTO
           else {
-            this.corner(fila, col, 1, -1);
+            valores = [[0, -1], [1, -1], [1, 0]];
+            this.mapita(valores, fila, col);
           }
         } 
-        
-        
         else if (this.decreaseLength(this.rows.length, fila)) {
           if (col == 0) {
             //Primera columna (VERTICAL 0)
-            this.killCells(fila, col, -1);
-            this.killCells(fila, col, -1, 1);
-            this.killCells(fila, col, 0, 1);
-            this.killCells(fila, col, 1, 1);
-            this.killCells(fila, col, 1);
+            valores = [[-1, 0], [-1, 1], [0, 1], [1, 1], [1,0]];
+            this.mapita(valores, fila, col);
           } else if (this.decreaseLength(this.columns.length, col)) {
             //(VERTICALES DEL MEDIO))
-            this.killCells(fila, col, -1);
-            this.killCells(fila, col, -1, -1);
-            this.killCells(fila, col, -1, 1);
-            this.killCells(fila, col, 0, -1);
-            this.killCells(fila, col, 0, 1);
-            this.killCells(fila, col, 1, -1);
-            this.killCells(fila, col, 1);
-            this.killCells(fila, col, 1, 1);
+            valores = [[-1, 0], [-1, -1], [-1, 1], [0, -1], [0, 1], [1, -1], [1,0], [1, 1]];
+            this.mapita(valores, fila, col);
           } //ultima columnna (VERTICAL 7)
           else {
-            this.killCells(fila, col, -1);
-            this.killCells(fila, col, -1, -1);
-            this.killCells(fila, col, 0, -1);
-            this.killCells(fila, col, 1, -1);
-            this.killCells(fila, col, 1);
+            valores = [[-1, 0], [-1, -1], [0, -1], [1, -1], [1, 0]];
+            this.mapita(valores, fila, col);
           }
         }
-
         //Ultima fila del array (ESQUINA INFERIOR IZQUIERDA)
         else {
           if (col == 0) {
             //Primera ESQUINA INFERIOR IZQUIERDA LISTO
-            this.corner(fila, col, -1);
+            valores = [[0, 1], [-1, 1], [-1, 0]];
+            this.mapita(valores, fila, col);
           } else if (this.decreaseLength(this.columns.length, col)) {
-            //(VERTICALES DEL MEDIO))
-            this.mid(fila, col, -1);
-            this.killCells(fila, col, -1, -1);
-            this.killCells(fila, col, -1);
+            //ESQUINA INFERIOR DERECHA LISTO
+            valores = [[0, -1], [0, 1], [-1, 1], [-1, -1], [-1, 0]];
+            this.mapita(valores, fila, col);           
           } //ESQUINA INFERIOR DERECHA LISTO
           else {
-            this.corner(fila, col, -1, -1);
+            valores = [[0, -1], [-1, -1], [-1, 0]];
+            this.mapita(valores, fila, col);           
           }
         }
         this.grid[fila][col] = this.celula.newGeneration(
@@ -108,7 +99,6 @@ module.exports = class Grid {
         console.log(this.vivas);
         this.vivas=0;
       }
-      
     }
   }
 
