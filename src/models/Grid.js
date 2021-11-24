@@ -25,6 +25,12 @@ module.exports = class Grid {
     this.grid[fila + left][col] == "." ? null : this.vivas++;
   }
   
+  mid(fila, col, value = 1) {
+    this.grid[fila][col - 1] == "." ? null : this.vivas++;
+    this.grid[fila][col + 1] == "." ? null : this.vivas++;
+    this.grid[fila + value][col + 1] == "." ? null : this.vivas++;
+  }
+  
   decreaseLength(x, col) {
     return (col >= x - x-1 || col <= x - 2);
   }
@@ -40,9 +46,7 @@ module.exports = class Grid {
             //Primera ESQUINA SUPERIOR izquierda LISTO
           } else if (this.decreaseLength(this.columns.length, col)) {
             //(VERTICALES DEL MEDIO))
-            this.grid[fila][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila + 1][col + 1] == "." ? null : this.vivas++;
+            this.mid(fila, col);
             this.grid[fila + 1][col - 1] == "." ? null : this.vivas++;
             this.grid[fila + 1][col] == "." ? null : this.vivas++;
           } //ESQUINA SUPERIOR DERECHA LISTO
@@ -87,9 +91,7 @@ module.exports = class Grid {
             this.corner(fila, col, -1);
           } else if (this.decreaseLength(this.columns.length, col)) {
             //(VERTICALES DEL MEDIO))
-            this.grid[fila][col - 1] == "." ? null : this.vivas++;
-            this.grid[fila][col + 1] == "." ? null : this.vivas++;
-            this.grid[fila - 1][col + 1] == "." ? null : this.vivas++;
+            this.mid(fila, col, -1);
             this.grid[fila - 1][col - 1] == "." ? null : this.vivas++;
             this.grid[fila - 1][col] == "." ? null : this.vivas++;
           } //ESQUINA INFERIOR DERECHA LISTO
